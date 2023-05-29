@@ -6,6 +6,7 @@ import { homeRouter } from './src/routes/home.routes.js';
 import { __dirname } from './utils.js';
 
 import { Server } from "socket.io";
+import { RealTimeRouter } from './src/routes/realTimeProducts.routes.js';
 
 
 const app = express()
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/products', apiProds)
 app.use('/api/carts', apiCarts)
 app.use("/home",homeRouter)
+app.use("/realTimeProducts", RealTimeRouter)
 
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
