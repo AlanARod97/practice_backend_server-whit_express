@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 // GET /api/products/:id
 
 router.get("/:pid", async (req, res)=>{
-    const product = await productManager.getProductsById(Number(req.params.id));
+    const product = await productManager.getProductsById(Number(req.params.pid));
     if(!product){
         res.status(404).json({status: "error", msg: "Not Found"})
     }else{
@@ -32,7 +32,7 @@ router.get("/:pid", async (req, res)=>{
 
 // POST /api/products
 router.post("/", async (req, res)=>{
-    const product = req.query
+    const product = req.body
     productManager.addProduct(product)
     return res
     .status(201)
@@ -43,7 +43,7 @@ router.post("/", async (req, res)=>{
 // PUT /api/products/:id
 
 router.put("/:pid", async (req, res)=>{
-    const id = Number(req.params.id)
+    const id = Number(req.params.pid)
     const body = req.body
     const updatedProduct = await productManager.updateProduct(id, body);
     return res

@@ -3,6 +3,7 @@ import { readFile, writeFile } from 'fs/promises';
  class ProductManager{
     constructor(path){
         this.path = path
+        this.products = [];
     }
 
 
@@ -21,7 +22,7 @@ import { readFile, writeFile } from 'fs/promises';
             throw new Error(`the product is already exist: ${product.code}`)
         }
         
-        const id = product.lenght !==0 ? products[products.lenght -1].id+1 : 1
+        const id = products.length !==0 ? products[products.lenght -1].id+1 : 1
         const thumbnails = product.thumbnails ? product.thumbnails : [];
         const newProduct = {
             id,
