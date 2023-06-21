@@ -1,56 +1,49 @@
-const socket = io()
+const socket = io();
 
-const createProductButton = document.getElementById('createProductButton')
-const form = document.getElementById('productForm');
+const chatBox = document.getElementById("input-msg");
 
+let mailIngresado = "";
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await getProducts();
-  });
-
-  let allProd = []
-
-  form.addEventListener('submit', (event)=>{
-    event.preventDefault()
-
-  const title = document.getElementById('title').value
-  const description = document.getElementById('description').value;
-  const price = document.getElementById('price').value;
-  const code = document.getElementById('code').value;
-  const stock = document.getElementById('stock').value;
-
-  const formData = new FormData();
-  formData.append('title', title);
-  formData.append('description', description);
-  formData.append('price', price);
-  formData.append('code', code);
-  formData.append('stock', stock);
-
+async function main() {
+    const { value: email } = await Swal.fire({
+      title: "Enter your email",
+      input: "text",
+      inputLabel: "Your email",
+      inputValue: "",
+      showCancelButton: false,
+      allowOutsideClick:false,
+      inputValidator: (value) => {
+        if (!value) {
+          return "You need to write something!";
+        }
+      },
+    });
   
-  createProduct(formData);
+   
+      mailIngresado = email;
+      
+}
   
-  form.reset();
-
+  main();
+chatBox.addEventListener("keyup", ({key})=>{
+    if(key == "Enter"){
+        socket.emit("msg_front_back", {
+            message: chatBox.value,
+            user: mailIngresado,
+        });
+        chatBox.value = "";
+    }
 })
 
-async function createProduct(product) {
-    try {
-  
-      const response = await fetch('/api/products', {
-        method: 'POST',
-        body: product
-      });
-  
-      if (!response.ok) {
-        throw new Error('Error al crear el producto');
-      }
-  
-      const data = await response.json();
-      console.log('Producto creado:', data);
-  
-      await getProducts()
-  
-    } catch (error) {
-      console.error('Error al crear el producto:', error);
-    }
-  }
+socket.on("listado_msgs", (msgs)=>{
+    const listadoMsg = document.getElementById("div-msg")
+    let formato = "";
+    msgs.forEach((msg)=>{
+        formato= formato + "email " + msg.user + ": " + msg.message +"</p>"
+    })
+    listadoMsg.innerHTML = formato;
+})
+
+
+
+
