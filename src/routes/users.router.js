@@ -1,5 +1,4 @@
 import express from 'express';
-import {userModel} from '../DAO/models/users.model.js'
 import { userService } from '../services/users.service.js';
 
 
