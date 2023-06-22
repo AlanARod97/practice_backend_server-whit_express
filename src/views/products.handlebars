@@ -1,16 +1,74 @@
-{{!-- <div>
-    {{#each allProducts}}
-    <p>
-        id: {{this.id}}
-        title: {{this.title}}
-        description: {{this.description}}
-        price: {{this.price}}
-        thumbnail: {{this.thumbnail}}
-        code: {{this.code}}
-        stock: {{this.stock}}
-        
-    </p>
-    <hr>
-    {{/each}}
-</div>
- --}}
+<main>
+
+
+<h1>{{{title}}}</h1>
+
+ <div >
+    <div >
+      <div >
+        {{#each simpleProduct}}
+          <div style="width: 15rem; border: 1px solid black">
+            
+            <div >
+              <div >
+                <h4 >{{this.title}}</h4>
+              </div>
+              <div >
+                <h6 >{{this.category}}</h6>
+              </div>
+              <div>
+                <p >{{this.description}}</p>
+              </div>
+              <div >
+                <p>$ {{this.price}}.-</p>
+              </div>
+              <div>
+                <button>Agregar al Carrito</button>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+
+       <div >
+        <p >
+          {{#if hasPrevPage}}
+            <button
+            
+     
+            >
+              <a href="/products/?pagina=1"><i></i></a>
+            </button>
+            <button
+              style="border: none"
+              
+            >
+              <a href="/products/?pagina={{prevPage}}"><i
+                 
+                ></i></a>
+            </button>
+          {{/if}}
+          Pagina:
+          <span >{{page}}</span>
+          de
+          <span>{{totalPages}}</span>
+
+          {{#if hasNextPage}}
+            <button
+              style="border: none"
+   
+            ><a href="/products-views/?pagina={{nextPage}}"><i
+                  
+                ></i></a></button>
+            <button
+              style="border: none"
+            
+            ><a href="/products-viws/?pagina={{totalPages}}"><i
+                 
+                ></i></a></button>
+          {{/if}}
+        </p>
+      </div>
+    </div>
+  </div>
+</main>

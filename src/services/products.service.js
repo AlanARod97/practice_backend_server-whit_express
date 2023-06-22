@@ -59,10 +59,11 @@ class productService{
     //   }
 
 
-    async createProduct({title, description, price, thumbnail, code, stock}){
+    async createProduct({title, description, category,  price, thumbnail, code, stock}){
         const productCreated = await productModel.create({
             title,
             description,
+            category,
             price,
             thumbnail,
             code,
@@ -99,4 +100,4 @@ class productService{
 }
 
 
-export const productService = new productService();
+export const ProductService = new productService();

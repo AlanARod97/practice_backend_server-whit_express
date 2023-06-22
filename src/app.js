@@ -5,6 +5,8 @@ import { usersRouter } from './routes/users.router.js';
 import { connectMongo } from './utils/dbConnection.js';
 import { connectSocketServer } from './utils/socketServer.js';
 import {testChatRouter} from './routes/test-chat.router.js';
+import { productsRouter } from './routes/products.router.js';
+import { productsViews } from './routes/productsViews.router.js';
 
 
 const app = express()
@@ -30,12 +32,11 @@ app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
-// app.use('/api/products', apiProds)
-// app.use('/api/carts', apiCarts)
-// app.use("/home",homeRouter)
- app.use("/test-chat", testChatRouter)
-app.use("/api/users", usersRouter)
 
+app.use("/test-chat", testChatRouter)
+app.use("/api/users", usersRouter)
+app.use("/api/products", productsRouter)
+app.use("/products-views", productsViews)
 
 
 
