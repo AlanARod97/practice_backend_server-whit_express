@@ -1,12 +1,14 @@
 import express from 'express';
 import handlebars from "express-handlebars";
 import { __dirname } from './config.js';
+import { cartViewsRouter } from './routes/cartViews.router.js';
+import { cartRouter } from './routes/carts.router.js';
+import { productsRouter } from './routes/products.router.js';
+import { productsViews } from './routes/productsViews.router.js';
+import { testChatRouter } from './routes/test-chat.router.js';
 import { usersRouter } from './routes/users.router.js';
 import { connectMongo } from './utils/dbConnection.js';
 import { connectSocketServer } from './utils/socketServer.js';
-import {testChatRouter} from './routes/test-chat.router.js';
-import { productsRouter } from './routes/products.router.js';
-import { productsViews } from './routes/productsViews.router.js';
 
 
 const app = express()
@@ -37,8 +39,8 @@ app.use("/test-chat", testChatRouter)
 app.use("/api/users", usersRouter)
 app.use("/api/products", productsRouter)
 app.use("/products-views", productsViews)
-
-
+app.use("/api/cart", cartRouter)
+app.use("/cart-views", cartViewsRouter)
 
 
 
