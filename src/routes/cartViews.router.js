@@ -1,4 +1,4 @@
-//@ts-check
+
 
 import express from 'express';
 import { cartService } from '../services/cart.service.js';
