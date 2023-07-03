@@ -14,6 +14,20 @@ import { userModel } from "../DAO/models/users.model.js";
         
         return users;
     }
+    async findUser({email, password}) {
+		const user = await userModel.findOne(
+			{ email: email },
+			{
+				_id: true,
+				email: true,
+				firsName: true,
+                lastName:true,
+				password: true,
+				rol: true,
+			}
+		);
+	
+	}
 
 
     async create({firstName, lastName, email}){
