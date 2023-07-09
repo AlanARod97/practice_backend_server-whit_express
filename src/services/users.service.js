@@ -24,16 +24,19 @@ import { isValidPassword } from "../utils/bcrypt.js";
 				email: true,
 				username: true,
                 password: true,
-				rol: true,
+				
 			}
 
 		);
         
-        if(user && isValidPassword(password, user.password)){
-            return user;
-        }else{
-            return false
-        }
+        // if(user && isValidPassword(password, user.password)){
+        //     return user;
+        // }else{
+        //     return false;
+        // }
+
+        return user;
+
     }
 
 
@@ -53,7 +56,7 @@ import { isValidPassword } from "../utils/bcrypt.js";
     }
 
 
-    async create({email, username, password, rol}){
+    async create(email, username, password, rol){
         const userAlreadyExist = await this.findUserByEmail(email)
         
         if (userAlreadyExist){
@@ -69,7 +72,7 @@ import { isValidPassword } from "../utils/bcrypt.js";
         return userCreated;
     }
 
-    async updateOne({_id, email, username, password, rol}){
+    async updateOne(_id, email, username, password, rol){
         const userUptaded = await userModel.updateOne(
             { _id: _id },
             { email, username, password, rol }
@@ -78,7 +81,7 @@ import { isValidPassword } from "../utils/bcrypt.js";
           return userUptaded;
     };
 
-    async deleteOne({_id}){
+    async deleteOne(_id){
         const deleted = await userModel.deleteOne(
             { _id: _id }
         );

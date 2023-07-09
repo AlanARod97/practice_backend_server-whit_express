@@ -1,14 +1,14 @@
 <h1>Registrate</h1>
 
-<form action="/api/session/register">
-    <input type="text" name="Nombre" placeholder="Nombre" >
-    <input type="text" name="Apellido" placeholder="Apellido">
-    <input type="email" name="email" placeholder="Email">
+<form action="/api/session/register" method="post">
+   
+   <input type="email" name="email" placeholder="Email">
+    <input type="text" name="username" placeholder="username">
     <input type="password" name="password" placeholder="Password">
+    <input type="text" name="rol" placeholder="rol">
 
-    <button>Register Now</button>
+    <button >Register Now</button>
 
-    <p>Ya tengo una cuenta</p>
-    <a href="/api/session/login"></a>
+    <a href="/api/session/login"><p>Ya tengo una cuenta</p></a>
 
 </form>

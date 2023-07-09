@@ -19,10 +19,11 @@ loginRouter.post("/", async(req,res)=>{
     const userCheck = await userService.findUser(email, password)
 
     if(userCheck){
-        req.session.user = userCheck.username;
-        req.session.rol = userExist.rol;
-        res.status(200).redirect("/products")
-    }else{2
+        req.session.email = userCheck.email;
+        req.session.rol = userCheck.rol;
+
+        res.status(200).redirect("/api/products")
+    }else{
         res.status(501).send("Email o contraseña incorrecta")
     }
 

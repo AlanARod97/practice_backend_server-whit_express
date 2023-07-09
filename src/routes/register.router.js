@@ -17,7 +17,7 @@ registerRouter.get("/", async (req,res)=>{
 
 
 registerRouter.post("/", async (req, res)=>{
-    const {email, username, password,rol} = req.body;
+    const {email, username,password,rol} = req.body;
     const userExist = await userService.findUserByEmail(email)
     if(userExist){
         res.send("El usuario ya existe!")
